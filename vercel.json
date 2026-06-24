@@ -1,11 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/bfhl",
-      "destination": "/api"
-    },
-    {
-      "source": "/api/bfhl",
+      "source": "/(.*)",
       "destination": "/api"
     }
   ]

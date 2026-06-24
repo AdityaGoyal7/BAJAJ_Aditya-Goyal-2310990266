@@ -1,6 +1,7 @@
 // index.js — Express API for BFHL Chitkara Challenge Round 1
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 app.use(cors());
@@ -200,7 +201,7 @@ function process(data) {
 }
 
 // ── Routes ────────────────────────────────────────────────────────────────────
-app.post(['/bfhl', '/api/bfhl', '/api', '/'], (req, res) => {
+app.post(['/bfhl', '/api/bfhl', '/api'], (req, res) => {
   try {
     const { data } = req.body;
 
@@ -228,13 +229,13 @@ app.get(['/bfhl', '/api/bfhl', '/api'], (req, res) => {
   res.status(200).json({ operation_code: 1 });
 });
 
-// Health check
+// Serve frontend
 app.get('/', (req, res) => {
-  res.json({ status: 'ok', message: 'BFHL API is running. POST to /bfhl' });
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 // ── Start server (only when running locally, not on Vercel) ───────────────────
-if (require.main === module) {
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL && require.main === module) {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
     console.log(`BFHL API running on http://localhost:${PORT}`);
