@@ -1,0 +1,17 @@
+{
+  "name": "bfhl-backend",
+  "version": "1.0.0",
+  "description": "BFHL Chitkara Full Stack Engineering Challenge - Round 1",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
