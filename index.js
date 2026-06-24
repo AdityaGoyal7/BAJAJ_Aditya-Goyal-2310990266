@@ -233,10 +233,12 @@ app.get('/', (req, res) => {
   res.json({ status: 'ok', message: 'BFHL API is running. POST to /bfhl' });
 });
 
-// ── Start server (only when not on Vercel) ────────────────────────────────────
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`BFHL API running on http://localhost:${PORT}`);
-});
+// ── Start server (only when running locally, not on Vercel) ───────────────────
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`BFHL API running on http://localhost:${PORT}`);
+  });
+}
 
 module.exports = app;
