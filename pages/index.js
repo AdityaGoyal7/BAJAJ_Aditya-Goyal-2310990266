@@ -47,7 +47,7 @@ export default function Home() {
     setError(''); setResult(null); setLoading(true);
     const data = input.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
     try {
-      const res = await fetch('/api/bfhl', {
+      const res = await fetch('/bfhl', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ data }),
