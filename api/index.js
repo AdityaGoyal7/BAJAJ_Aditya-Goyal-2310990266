@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 // ── Identity ──────────────────────────────────────────────────────────────────
-const FINAL_USER_ID       = 'adityagoyal_00000000'; // Replace 00000000 with your ddmmyyyy DOB
+const FINAL_USER_ID       = 'adityagoyal_17091999'; // Note: replace 17091999 with your actual ddmmyyyy DOB before final submission
 const EMAIL_ID            = 'aditya0266.be23@chitkara.edu.in';
 const COLLEGE_ROLL_NUMBER = '2310990266';
 
@@ -200,7 +200,7 @@ function process(data) {
 }
 
 // ── Routes ────────────────────────────────────────────────────────────────────
-app.post('/bfhl', (req, res) => {
+app.post(['/bfhl', '/api/bfhl', '/api', '/'], (req, res) => {
   try {
     const { data } = req.body;
 
@@ -212,7 +212,7 @@ app.post('/bfhl', (req, res) => {
     }
 
     const result = process(data);
-    return res.json(result);
+    return res.json({ is_success: true, ...result });
 
   } catch (err) {
     console.error('Error processing request:', err);
@@ -224,8 +224,8 @@ app.post('/bfhl', (req, res) => {
 });
 
 // GET /bfhl — operation code (some evaluators check this)
-app.get('/bfhl', (req, res) => {
-  res.json({ operation_code: 1 });
+app.get(['/bfhl', '/api/bfhl', '/api'], (req, res) => {
+  res.status(200).json({ operation_code: 1 });
 });
 
 // Health check
@@ -234,7 +234,7 @@ app.get('/', (req, res) => {
 });
 
 // ── Start server (only when running locally, not on Vercel) ───────────────────
-if (!process.env.VERCEL) {
+if (require.main === module) {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
     console.log(`BFHL API running on http://localhost:${PORT}`);
