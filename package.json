@@ -1,18 +1,15 @@
 {
-  "name": "bfhl-backend",
+  "name": "bajaj-aditya-bfhl",
   "version": "1.0.0",
-  "description": "BFHL Chitkara Full Stack Engineering Challenge - Round 1",
-  "main": "api/index.js",
+  "private": true,
   "scripts": {
-    "start": "node api/index.js",
-    "test": "node test.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.21.0"
-  },
-  "engines": {
-    "node": "18.x"
+    "next": "14.2.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   }
 }
-
